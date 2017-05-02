@@ -1,0 +1,245 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>2017.5.2-jquery-zuo</title>
+	<script src="js/jquery.js" charset="utf-8"></script>
+</head>
+<style>
+	*{
+		margin: 0;
+		padding: 0;
+	}
+	.box{
+		width: 500px;
+		margin: 100px auto;
+		background: yellow;
+		position: relative;
+	}
+	.title{
+		width: 500px;
+		height: 25px;
+		text-align: center;
+		line-height: 25px;
+	}
+	.title li{
+		float: left;
+		width: 250px;
+		height: 25px;
+		list-style: none;
+		cursor: pointer;
+		border-top: 2px solid #fff;
+	}
+	.list-box{
+		width: 500px;
+		height: 150px;
+		background: yellowgreen;
+		clear: both;
+	}
+	.list{
+		width: 450px;
+		height: 140px;
+		padding: 5px 50px 0px;
+		list-style: none;		
+		position: absolute;
+		top: 25px;
+		left: 0px;
+	}
+	.list li{
+		width: 450px;
+		height: 25px;
+		line-height: 25px;
+	}
+	.list li a{
+		color: #000;
+		text-decoration: none;
+		font-size: 14px;
+	}
+	#menu{
+		width: 500px;
+		height: auto;
+		text-align: center;
+		margin: 40px auto;
+	}
+	#menu .firstMenu{
+		width: 60px;
+		height: 25px;
+		background: #F5BDB3;
+		cursor: pointer;
+	}
+	.secondMenu{
+		width: 60px;
+		display: none;
+		background: #98ded7;
+	}
+	.secondMenu li{
+		height: 25px;
+		list-style: none;
+	}
+	.secondMenu a{
+		color: #000;
+		text-decoration: none;
+	}
+	/*我已阅读*/
+	.input-box{
+		width: 500px;
+		height: 50px;
+		margin: 30px auto;
+	}
+	.check{
+		margin-bottom: 10px;
+		border: none;
+		outline: none;
+	}
+	.submit{
+		width: 60px;
+		height: 25px;
+		line-height: 25px;
+		text-align:center;
+		border: none;
+		outline: none;
+	}
+
+	/*树形导航*/
+	#root{
+		width: 470px;
+		height: auto;
+		margin: 40px auto;
+		padding: 15px;
+	}
+	#root .rootfirst{
+		width: 100px;
+		height: 25px;
+		background: #000;
+		cursor: pointer;
+		color: #fff;
+		padding: 0px 15px;
+	}
+	.rootsecond{
+		width: 100px;
+		display: none;
+		background: #eee;
+		color: #333;
+		padding: 0px 15px;
+	}
+	.rootsecond li{
+		height: 25px;
+		list-style: none;
+	}
+	.rootsecond a{
+		color: #000;
+		text-decoration: none;
+	}
+</style>
+<body>
+		<!-- 选项卡 -->
+	<div class="box">
+		<ul class="title">
+			<li>热门主题</li>
+			<li>我的推荐</li>
+		</ul>
+		<div class="list-box">
+			<ul class="list" style="display:block">
+				<li><a href="#">ios10下 网页百度地图定位失败</a></li>
+				<li><a href="#">支持IPv6-only网络，iOS 地图SDK 升级 预告（5月30日更新）</a></li>
+				<li><a href="#">百度导航官方Demo报ClassNotFound,求解</a></li>
+				<li><a href="#">百度地图开放平台全面支持国测局坐标</a></li>
+				<li><a href="#">开发者账号体系常见Q&A</a></li>
+			</ul>
+			<ul class="list" style="display:none">
+				<li><a href="">农村大娘凌晨三点进城卖葱，遇小伙百般挑剔，结局却感人</a></li>
+				<li><a href="">《人民的名义》收视长虹，他功不可没，可惜只在剧中打了回酱油</a></li>
+				<li><a href="">武僧一龙疑回应徐晓冬挑战：无情怀鼠辈 不服来战</a></li>
+				<li><a href="">谁说中国房价只涨不跌，这几次泡沫刻骨铭心</a></li>
+				<li><a href="">人民的名义里还有几条漏网之鱼</a></li>
+			</ul>
+		</div>		
+	</div>
+	<!-- 导航 -->
+	<div id="menu">
+		<div class="firstMenu">jquery</div>
+		<div class="secondMenu">
+			<ul>
+				<li><a href="#">属性</a></li>
+				<li><a href="#">方法</a></li>
+				<li><a href="#">ajax</a></li>
+				<li><a href="#">选择器</a></li>
+			</ul>
+		</div>		
+	</div>
+
+	<!-- 我已阅读 -->
+	<div class="input-box">
+		<input type="checkbox"  class="check" />我已阅读<br>
+		<input type="submit" value="提交" class="submit" />
+	</div>
+
+	<!-- 树形导航 -->
+	<div id="root">
+		<div class="rootfirst">jquery</div>
+		<div class="rootsecond">
+			<ul>
+				<li><a href="#">属性</a></li>
+				<li><a href="#">方法</a></li>
+				<li><a href="#">ajax</a></li>
+				<li><a href="#">选择器</a></li>
+			</ul>
+		</div>		
+	</div>
+</body>
+<script>
+            // 选项卡
+	$(".title li").mouseenter(function(){
+		var index=$(this).index();
+		$(this).css({
+			"border-top" : "2px solid #0199da", 
+			"color" : "#0199da"
+			})
+		$(".list").eq(index).show('slow');
+	})
+	$(".title li").mouseout(function(){
+		var index=$(this).index();
+		$(this).css({
+			"border-top" : "2px solid #fff", 
+			"color" : "#000"
+			})
+		$(".list").eq(index).hide('slow');	
+	})
+	$(".title li").click(function(){
+		var index=$(this).index();
+		$(this).css({
+			"border-top" : "2px solid #0199da", 
+			"color" : "#0199da"
+			})
+		$(".list").eq(index).show('slow');
+	})
+
+	// 导航
+	$(".firstMenu").mouseenter(function(){
+		$(".secondMenu").show(400);
+	})
+
+	// 我已阅读	
+		var checked=false;
+		$(".check").dblclick(function() {
+			$(this).removeAttr("checked");
+			checked=$(".check").prop("checked");
+			$(".submit").attr("disabled","disabled");
+		});
+		$(".check").click(function() {
+			$(this).attr("checked","checked");
+			checked=$(".check").prop("checked");
+			$(".submit").removeAttr('disabled');
+		});
+	$(".submit").click(function(){
+		alert("可以使用");
+	})
+
+	// 树形导航
+	$(".rootfirst").click(function(){
+		$(".rootsecond").slideToggle("slow");
+	}).hover(function(){
+		$(this).css("background","red");
+	})
+</script>
+</html>
