@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8">
+		<title>2017.5.2-jquery-zuoye</title>
+	</head>
+	<script src="js/jquery.js" charset="utf-8"></script>
+	<style>
+		*{
+			margin: 0;
+			padding: 0;
+		}
+		#view{
+			width: 600px;
+			height: 320px;
+			overflow: hidden;
+			position: relative;
+		}
+		#view ul{
+			width: 2400px;
+			height: 320px;
+			position: absolute;
+			top: 0px;
+			left: 0px;
+		}
+		#view ul li{
+			float:left;
+			width: 600px;
+			height: 320px;
+			list-style: none;
+
+		}
+		#view img{
+			width: 600px;
+			height: 320px;
+		}
+	</style>
+	<body>
+		<div id = "view">
+			<ul>
+				<li><a href="#"><img src="./images/banner1.jpg"></a></li>
+				<li><a href="#"><img src="./images/banner2.jpg"></a></li>
+				<li><a href="#"><img src="./images/banner3.jpg"></a></li>
+				<li><a href="#"><img src="./images/banner4.jpg"></a></li>
+			</ul>
+		</div>
+	</body>
+	<script type="text/javascript">
+	setInterval(function(){
+		$("li").each(function(i){
+			$("ul").animate({"left":-600*i},2000,function(){
+				if(i==3){
+					$("ul").css("left",0);
+				}
+			});
+		})
+	},1000)			
+	</script>
+</html>
