@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>表单验证</title>
+</head>
+<script src="js/jquery.js" charset="utf-8"></script>
+<style>
+	*{
+		margin: 0;
+		padding: 0;
+	}
+	form{
+		width: 300px;
+		height: 100px;
+		background: yellowgreen;
+		margin: 100px auto;
+	}
+	form .box{
+		width: 240px;
+		height: 25px;
+		line-height: 25px;
+		margin: 10px auto;
+	}
+	.box span{
+		display: inline-block;
+		width: 50px;
+		height: 25px;
+	}
+	.box input{
+		height: 20px;
+		line-height: 20px;
+		outline: none;
+	}
+</style>
+<body>
+	<form>
+		<div class="box">
+			<span>用户名</span><input type="text" name="" class="user" />
+		</div>
+		<div class="box">
+			<span>邮箱</span><input type="text" name=""  class="email" />
+		</div>
+	</form>
+</body>
+<script type="text/javascript">
+	$(".user").blur(function(){
+		var reg = /^[a-zA-Z_][\w_]{3,15}$/;
+		var str = $(this).val();
+		if(reg.test(str)){
+			console.log(str);
+			alert("用户名正确");
+		}else{
+			alert("用户名输入格式错误");
+		}
+	})
+	$(".email").blur(function(){
+		var reg1 = /^[a-zA-Z0-9_-]{1,}@[a-zA-Z0-9]{2,5}\.+?[\w]{2,5}$/;
+		var str1 = $(this).val();
+		if(reg1.test(str1)){
+			console.log(str1);
+			alert("邮箱正确");
+		}else{
+			alert("邮箱格式输入不正确");
+		}
+	})
+</script>
+</html>

@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>2017.5.3-jquery</title>
+</head>
+<script src="js/jquery.js" charset="utf-8"></script>
+<style>
+	*{
+		margin: 0;
+		padding: 0;
+	}
+	#box{
+		width: 820px;
+		height: 334px;
+		margin: 100px auto;
+		position: relative;
+		overflow: hidden;
+	}
+	#box ul li{
+		position: absolute;
+		width: 499px;
+		height: 333px;
+		top: 0;
+		overflow: hidden;
+	}
+	#box ul li img{
+		width: 499px;
+		height: 333px;
+	}
+	#box ul li.img1{left: 0;}
+	#box ul li.img2{left: 146px;}
+	#box ul li.img3{left: 283px;}
+	#box ul li.img4{left: 420px;}
+	#box ul li.img5{left: 556px;}
+	#box ul li.img6{left: 693px;}
+</style>
+<body>
+	<div id="box">
+		<ul>
+			<li class="img1"><a href=""><img src="images/01.jpg" alt=""></a></li>
+			<li class="img2"><a href=""><img src="images/02.jpg" alt=""></a></li>
+			<li class="img3"><a href=""><img src="images/03.jpg" alt=""></a></li>
+			<li class="img4"><a href=""><img src="images/04.jpg" alt=""></a></li>
+			<li class="img5"><a href=""><img src="images/05.jpg" alt=""></a></li>
+			<li class="img6"><a href=""><img src="images/06.jpg" alt=""></a></li>
+		</ul>
+	</div>
+</body>
+<script type="text/javascript">
+	/*$(".img1").mouseenter(function(){
+		//var index=$(this).index();
+		//$(".img1").animate({"left":499},1000);
+		$(".img2").animate({"left":499},1000);
+		$(".img3").animate({"left":499+64},1000);
+		$(".img4").animate({"left":499+64*2},1000);
+		$(".img5").animate({"left":499+64*3},1000);
+		$(".img6").animate({"left":499+64*4},1000);
+	})
+	$(".img2").mouseenter(function(){
+		//var index=$(this).index();
+		//$(".img1").animate({"left":499},1000);
+		$(".img2").animate({"left":64},1000);
+		$(".img3").animate({"left":499+64},1000);
+		$(".img4").animate({"left":499+64*2},1000);
+		$(".img5").animate({"left":499+64*3},1000);
+		$(".img6").animate({"left":499+64*4},1000);
+	})
+	$(".img3").mouseenter(function(){
+		//var index=$(this).index();
+		//$(".img1").animate({"left":499},1000);
+		$(".img2").animate({"left":64},1000);
+		$(".img3").animate({"left":64*2},1000);
+		$(".img4").animate({"left":499+64*2},1000);
+		$(".img5").animate({"left":499+64*3},1000);
+		$(".img6").animate({"left":499+64*4},1000);
+	})
+	$(".img4").mouseenter(function(){
+		//var index=$(this).index();
+		//$(".img1").animate({"left":499},1000);
+		$(".img2").animate({"left":64},1000);
+		$(".img3").animate({"left":64*2},1000);
+		$(".img4").animate({"left":64*3},1000);
+		$(".img5").animate({"left":499+64*3},1000);
+		$(".img6").animate({"left":499+64*4},1000);
+	})
+	$(".img5").mouseenter(function(){
+		//var index=$(this).index();
+		//$(".img1").animate({"left":499},1000);
+		$(".img2").animate({"left":64},1000);
+		$(".img3").animate({"left":64*2},1000);
+		$(".img4").animate({"left":64*3},1000);
+		$(".img5").animate({"left":64*4},1000);
+		$(".img6").animate({"left":499+64*4},1000);
+	})
+	$(".img6").mouseenter(function(){
+		//var index=$(this).index();
+		//$(".img1").animate({"left":499},1000);
+		$(".img2").animate({"left":64},1000);
+		$(".img3").animate({"left":64*2},1000);
+		$(".img4").animate({"left":64*3},1000);
+		$(".img5").animate({"left":64*4},1000);
+		$(".img6").animate({"left":64*5},1000);
+	})*/
+	$("#box li").each(function(sindex){
+		var sindex = sindex;
+		$("#box ul li").mouseover(function(){
+			if($("#box ul li").eq(sindex).is(":animated")){
+				return;
+			}
+			if(sindex > $(this).index()){			
+				$("#box ul li").eq(sindex).animate({"left" : 499 + 64 * (sindex-1)},1000);
+			}else{
+				$("#box ul li").eq(sindex).animate({"left" : 64 * sindex},1000);
+			}
+		})
+		
+	})
+
+
+	$("#box").mouseleave(function(){
+		$(".img1").animate({"left": 0},1000);
+		$(".img2").animate({"left":146},1000);
+		$(".img3").animate({"left":283},1000);
+		$(".img4").animate({"left":420},1000);
+		$(".img5").animate({"left":556},1000);
+		$(".img6").animate({"left":693},1000);
+	})
+</script>
+</html>
