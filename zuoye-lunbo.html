@@ -15,19 +15,24 @@
 			height: 320px;
 			overflow: hidden;
 			position: relative;
+			margin: 100px auto;
 		}
 		#view ul{
-			width: 2400px;
+			width: 3000px;
 			height: 320px;
+			/* 动画效果设置 */
 			position: absolute;
 			top: 0px;
 			left: 0px;
 		}
 		#view ul li{
-			float:left;
 			width: 600px;
 			height: 320px;
 			list-style: none;
+			/*淡入淡出设置*/
+			position: absolute;
+			top: 0px;
+			left: 0px;
 
 		}
 		#view img{
@@ -46,14 +51,30 @@
 		</div>
 	</body>
 	<script type="text/javascript">
-	setInterval(function(){
-		$("li").each(function(i){
-			$("ul").animate({"left":-600*i},2000,function(){
-				if(i==3){
-					$("ul").css("left",0);
-				}
-			});
-		})
-	},1000)			
+	//动画效果
+	/*$("ul li:first").clone().appendTo("ul");
+	var i = 0;
+	function next(){	
+		i++;
+		$("ul").animate({"left":-600*i},1000,function(){
+			if(i > 3){
+				i = 0;
+				$(this).css("left",0);
+			}
+		});
+
+	}
+	setInterval(next,2000)	*/
+
+	//淡入淡出效果
+	var i = 3;
+	setInterval(function(){		
+		$("li").eq(i).fadeOut(900);
+		i--;
+		if(i < 1){
+			i = 3	
+		}
+		$("li").eq(i).fadeIn(900);
+	},2000)		
 	</script>
 </html>

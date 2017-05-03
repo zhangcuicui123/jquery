@@ -30,6 +30,10 @@
 		cursor: pointer;
 		border-top: 2px solid #fff;
 	}
+	.title li.select{
+		border-top: 2px solid #0199da;
+		color: #0199da;
+	}
 	.list-box{
 		width: 500px;
 		height: 150px;
@@ -135,7 +139,7 @@
 		<!-- 选项卡 -->
 	<div class="box">
 		<ul class="title">
-			<li>热门主题</li>
+			<li class="select">热门主题</li>
 			<li>我的推荐</li>
 		</ul>
 		<div class="list-box">
@@ -189,29 +193,12 @@
 </body>
 <script>
             // 选项卡
-	$(".title li").mouseenter(function(){
-		var index=$(this).index();
-		$(this).css({
-			"border-top" : "2px solid #0199da", 
-			"color" : "#0199da"
-			})
-		$(".list").eq(index).show('slow');
-	})
-	$(".title li").mouseout(function(){
-		var index=$(this).index();
-		$(this).css({
-			"border-top" : "2px solid #fff", 
-			"color" : "#000"
-			})
-		$(".list").eq(index).hide('slow');	
-	})
-	$(".title li").click(function(){
-		var index=$(this).index();
-		$(this).css({
-			"border-top" : "2px solid #0199da", 
-			"color" : "#0199da"
-			})
-		$(".list").eq(index).show('slow');
+            $(".title li").each(function(index){
+            	$(this).mouseenter(function(){
+            		$(this).addClass("select").siblings().removeClass("select");
+            		$(".list").eq(index).show().siblings().hide();
+            	})
+	
 	})
 
 	// 导航
