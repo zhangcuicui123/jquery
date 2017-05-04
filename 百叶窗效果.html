@@ -29,11 +29,11 @@
 		height: 333px;
 	}
 	#box ul li.img1{left: 0;}
-	#box ul li.img2{left: 146px;}
-	#box ul li.img3{left: 283px;}
-	#box ul li.img4{left: 420px;}
-	#box ul li.img5{left: 556px;}
-	#box ul li.img6{left: 693px;}
+	#box ul li.img2{left: 136px;}
+	#box ul li.img3{left: 272px;}
+	#box ul li.img4{left: 408px;}
+	#box ul li.img5{left: 544px;}
+	#box ul li.img6{left: 680px;}
 </style>
 <body>
 	<div id="box">
@@ -48,83 +48,30 @@
 	</div>
 </body>
 <script type="text/javascript">
-	/*$(".img1").mouseenter(function(){
-		//var index=$(this).index();
-		//$(".img1").animate({"left":499},1000);
-		$(".img2").animate({"left":499},1000);
-		$(".img3").animate({"left":499+64},1000);
-		$(".img4").animate({"left":499+64*2},1000);
-		$(".img5").animate({"left":499+64*3},1000);
-		$(".img6").animate({"left":499+64*4},1000);
-	})
-	$(".img2").mouseenter(function(){
-		//var index=$(this).index();
-		//$(".img1").animate({"left":499},1000);
-		$(".img2").animate({"left":64},1000);
-		$(".img3").animate({"left":499+64},1000);
-		$(".img4").animate({"left":499+64*2},1000);
-		$(".img5").animate({"left":499+64*3},1000);
-		$(".img6").animate({"left":499+64*4},1000);
-	})
-	$(".img3").mouseenter(function(){
-		//var index=$(this).index();
-		//$(".img1").animate({"left":499},1000);
-		$(".img2").animate({"left":64},1000);
-		$(".img3").animate({"left":64*2},1000);
-		$(".img4").animate({"left":499+64*2},1000);
-		$(".img5").animate({"left":499+64*3},1000);
-		$(".img6").animate({"left":499+64*4},1000);
-	})
-	$(".img4").mouseenter(function(){
-		//var index=$(this).index();
-		//$(".img1").animate({"left":499},1000);
-		$(".img2").animate({"left":64},1000);
-		$(".img3").animate({"left":64*2},1000);
-		$(".img4").animate({"left":64*3},1000);
-		$(".img5").animate({"left":499+64*3},1000);
-		$(".img6").animate({"left":499+64*4},1000);
-	})
-	$(".img5").mouseenter(function(){
-		//var index=$(this).index();
-		//$(".img1").animate({"left":499},1000);
-		$(".img2").animate({"left":64},1000);
-		$(".img3").animate({"left":64*2},1000);
-		$(".img4").animate({"left":64*3},1000);
-		$(".img5").animate({"left":64*4},1000);
-		$(".img6").animate({"left":499+64*4},1000);
-	})
-	$(".img6").mouseenter(function(){
-		//var index=$(this).index();
-		//$(".img1").animate({"left":499},1000);
-		$(".img2").animate({"left":64},1000);
-		$(".img3").animate({"left":64*2},1000);
-		$(".img4").animate({"left":64*3},1000);
-		$(".img5").animate({"left":64*4},1000);
-		$(".img6").animate({"left":64*5},1000);
-	})*/
-	$("#box li").each(function(sindex){
-		var sindex = sindex;
-		$("#box ul li").mouseover(function(){
-			if($("#box ul li").eq(sindex).is(":animated")){
-				return;
-			}
-			if(sindex > $(this).index()){			
-				$("#box ul li").eq(sindex).animate({"left" : 499 + 64 * (sindex-1)},1000);
-			}else{
-				$("#box ul li").eq(sindex).animate({"left" : 64 * sindex},1000);
-			}
-		})
-		
-	})
-
-
-	$("#box").mouseleave(function(){
-		$(".img1").animate({"left": 0},1000);
-		$(".img2").animate({"left":146},1000);
-		$(".img3").animate({"left":283},1000);
-		$(".img4").animate({"left":420},1000);
-		$(".img5").animate({"left":556},1000);
-		$(".img6").animate({"left":693},1000);
+	//get到的知识点:each和stop方法
+	var i;
+	var imgR;
+	var imgL;
+	$("#box li").each(function(){
+		$(this).mouseover(function(){
+			i = $(this).index();
+ 			imgL = "#box li:lt(" + i + ")" //获取当前左侧的所有图片
+			imgR = "#box li:gt(" + i + ")" //获取当前右侧的所有图片
+ 			//当前图片的变化
+ 			$(this).stop(true).animate({"left" : i * 64}, 1000);
+ 			//左侧图片的变化
+ 			$(imgL).each(function(){
+ 				$(this).stop(true).animate({"left" : ($(this).index()) * 64}, 1000)
+ 			})
+			 //右侧图片的变化
+ 			$(imgR).each(function(){
+ 				$(this).stop(true).animate({"left" : 499 + ($(this).index() - 1) * 64}, 1000)
+ 			})
+ 		}).mouseleave(function(){
+		 	$("#box li").each(function(){
+		 		$(this).stop(true).animate({"left" : ($(this).index())*136}, 1000);
+		 	})
+ 		});
 	})
 </script>
 </html>
