@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>2015.5.4-jquery</title>
+</head>
+<style>
+	*{
+		margin: 0;
+		padding: 0;
+	}
+	.box{
+		width: 100px;
+		height: 100px;
+		background: skyblue;
+		position: absolute;
+	}
+</style>
+<body>
+	<div class="box"></div>
+</body>
+<script src="js/jquery.js" charset="utf-8"></script>
+<script>
+	$.fn.extend({
+		shape : function(){
+			var self = this;
+			this.click(function(){
+				var lefts = parseInt(Math.random() * 100) + 900;
+				var tops = parseInt(Math.random() * 100) + 600;
+				self.animate({"border-radius" : 50  , "left" : + lefts , "top" : + tops },2000);
+				self.animate({"border-radius" : 0 , "left" : + lefts * 1.5 , "top" : - parseInt(tops/300) },3000);
+				self.animate({"border-radius" : 50  , "left" : - parseInt(lefts/300) },2000);
+			})
+		}
+	})
+</script>
+<script type="text/javascript">
+	$(".box").shape();
+</script>
+</html>

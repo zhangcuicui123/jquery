@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>2015.5.4-jquery</title>
+</head>
+<style>
+	.light{
+		background: yellow;
+	}
+</style>
+<body>
+	<div class="title">歌词</div>
+	<ul>
+		<li>时光一去永不回</li>
+		<li>往事只能回味</li>
+		<li>让青春吹动了你的长发</li>
+		<li>让它牵引你的梦</li>
+		<li>不知不觉这城市的历史</li>
+		<li>已记取了你的笑容</li>
+		<li>红红心中蓝蓝的天</li>		
+	</ul>
+</body>
+<script src="js/jquery.js" charset="utf-8"></script>
+<script>
+	$.extend({
+		hilight : function(dom){
+			var self = dom;
+			dom.click(function(){
+				self.toggleClass('light');
+			})
+		}
+	})
+</script>
+<script type="text/javascript">
+	$.hilight($(".title"));
+	$("ul li").each(function(i){
+		$.hilight($(this));	
+	})
+	
+</script>
+</html>
